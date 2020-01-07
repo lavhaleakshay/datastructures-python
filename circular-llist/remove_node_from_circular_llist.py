@@ -60,10 +60,6 @@ class CircularLinkedList:
                     cur = cur.next
 
 
-
-
-
-
 cllist = CircularLinkedList()
 cllist.append("A")
 cllist.append("B")
