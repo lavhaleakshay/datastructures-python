@@ -52,36 +52,36 @@ class LinkedList:
             cur_node = cur_node.next
         return count
 
-    def count_occurences_iterative(self, data):
-        count = 0
-        cur = self.head
-        while cur:
-            if cur.data == data:
-                count += 1
-            cur = cur.next
-        return count
-    
-    def count_occurences_recursive(self, node, data):
-        if not node:
-            return 0
-        if node.data == data:
-            return 1 + self.count_occurences_recursive(node.next, data)
-        else:
-            return self.count_occurences_recursive(node.next, data)
+    def rotate(self, k):
+        p = self.head
+        q = self.head
         
+        prev =None
+        count = 0
+        while p and count < k:
+            prev = p
+            p = p.next
+            q = q.next
+            count += 1
+        p = prev
 
-
+        while q:
+            prev = q
+            q = q.next
+        q = prev
+        
+        q.next = self.head
+        self.head = p.next
+        p.next = None
 
 llist = LinkedList()
 llist.append(1)
 llist.append(2)
-llist.append(1)
 llist.append(3)
-llist.append(1)
 llist.append(4)
-llist.append(1)
+llist.append(5)
+llist.append(6)
 llist.print_list()
 print("\n")
-print(llist.count_occurences_iterative(1))
-print("\n")
-print(llist.count_occurences_recursive(llist.head, 1))
+llist.rotate(4)
+llist.print_list()
